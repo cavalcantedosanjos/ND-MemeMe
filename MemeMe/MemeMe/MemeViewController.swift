@@ -147,6 +147,7 @@ class MemeViewController: UIViewController, UINavigationControllerDelegate {
         ]
         field.defaultTextAttributes = memeTextAttributes
         field.textAlignment = .center
+        field.autocapitalizationType = .allCharacters
     }
 
 }
