@@ -17,6 +17,7 @@ class MemeViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var albumButton: UIBarButtonItem!
+    @IBOutlet weak var closeButton: UIBarButtonItem!
     
     @IBOutlet weak var memeImageView: UIImageView!
     
@@ -78,6 +79,9 @@ class MemeViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func albumButton_Clicked(_ sender: Any) {
        pick(withSource: .photoLibrary)
     }
+    @IBAction func closeButton_Clicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - UIImagePickerController
     
@@ -120,6 +124,10 @@ class MemeViewController: UIViewController, UINavigationControllerDelegate {
     func save(memedImage: UIImage) {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: memeImageView.image!, memedImage: memedImage)
         
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+        
+        dismiss(animated: true, completion: nil)
+    
     }
     
     func generateMemedImage() -> UIImage {
